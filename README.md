@@ -1,6 +1,6 @@
-﻿駭客攻防技術作業三：hping 
+﻿# 駭客攻防技術作業三：hping 
 
-資工三乙 10911240 楊大為 
+## 資工三乙 10911240 楊大為 
 
 目標選擇：
 
@@ -38,7 +38,6 @@ TCP SYN Scan：
 
 ![](picture/Aspose.Words.eec03957-5f4b-444d-aa83-6455df2110ce.008.png)
 
-注：等超久，等到快睡著
 
 然而，我們就會發現以這種方式使用 hping 是很麻煩的。因此 hping 提供了新的 掃描功能，可以使用"-8"或"—scan"參數來達到掃描的需求： 
 
@@ -114,9 +113,7 @@ TCP ACK 掃描可通過在探測封包中設置 ACK 旗標來執行：
 
 ![](picture/Aspose.Words.eec03957-5f4b-444d-aa83-6455df2110ce.027.jpeg)
 
-注：當使用 ACK 掃描時，210.240.160.43 應該會對所有未知端口發送重置信號
-
-- RST），但因為此行為可能被防火牆限制住，因此 ACK 掃描失敗，不會收到 任何回傳封包。 
+注：當使用 ACK 掃描時，210.240.160.43 應該會對所有未知端口發送重置信號 (RST)，但因為此行為可能被防火牆限制住，因此 ACK 掃描失敗，不會收到 任何回傳封包。 
 
 掃描成功的案例應該會如下所示：
 
@@ -138,12 +135,8 @@ Other TCP Scans
 
 對於 TCP 掃描，可以使用以下參數：
 
--S or — syn flags=s SYN ![](picture/Aspose.Words.eec03957-5f4b-444d-aa83-6455df2110ce.032.png)
-
-
-
+| -S or — syn flags=s SYN|
 |-A or — ack flags=a ACK |
-| - |
 |-R or — rst flags=r RST |
 |-F or — fin flags=f FIN |
 |-P or — push flags=p PUSH |
@@ -358,19 +351,20 @@ Sniffer
 
 更進階的流量資訊顯示需要使用  Tcl  語言。要顯示在線路上捕獲的所有流量：
 
-hping3> while 1 { ![](picture/Aspose.Words.eec03957-5f4b-444d-aa83-6455df2110ce.078.png)
-
-set p [lindex [hping recv ens3] 0] puts "[hping getfield data str $p]" } 
+hping3> while 1 {
+set p [lindex [hping recv ens3] 0] puts "[hping getfield data str $p]"
+} 
 
 ![](picture/Aspose.Words.eec03957-5f4b-444d-aa83-6455df2110ce.079.jpeg)
 
 我們甚至可以展示類似於  tcpdump  的輸出： 
 
-hping3> while 1 { ![](picture/Aspose.Words.eec03957-5f4b-444d-aa83-6455df2110ce.080.png)
+hping3> while 1 {
 
 `     `set p [lindex [hping recv ens3] 0] 
 
-`     `puts "[hping getfield ip saddr $p] -> [hping getfield ip daddr $p]" } 
+`     `puts "[hping getfield ip saddr $p] -> [hping getfield ip daddr $p]" 
+} 
 
 ![](picture/Aspose.Words.eec03957-5f4b-444d-aa83-6455df2110ce.081.jpeg)
 
